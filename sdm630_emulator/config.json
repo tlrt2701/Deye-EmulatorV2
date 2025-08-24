@@ -1,1 +1,28 @@
-
+{
+  "name": "SDM630 Emulator",
+  "version": "1.0.0",
+  "slug": "sdm630_emulator",
+  "build": true,
+  "description": "Emuliert einen SDM630 über Modbus TCP für Deye-Wechselrichter via Waveshare RS485",
+  "startup": "application",
+  "boot": "auto",
+  "init": true,
+  "watchdog": "tcp://localhost:502",
+  "host_network": true,
+  "url": "https://github.com/tlrt2701/Deye-EmulatorV2",
+  "panel_icon": "mdi:chip",
+  "ingress": false,
+  "arch": ["amd64", "armv7", "aarch64"],
+  "options": {
+    "mqtt_broker": "core-mosquitto",
+    "mqtt_topic": "homeassistant/sensor/go_econtroller_910332_grid_power/state",
+    "slave_id": 1,
+    "modbus_port": 502
+  },
+  "schema": {
+    "mqtt_broker": "str",
+    "mqtt_topic": "str",
+    "slave_id": "int",
+    "modbus_port": "int"
+  }
+}
