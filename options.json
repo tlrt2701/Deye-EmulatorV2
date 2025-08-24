@@ -1,6 +1,0 @@
-{
-  "mqtt_broker": "core-mosquitto",
-  "mqtt_topic": "homeassistant/sensor/go_econtroller_910332_grid_power/state",
-  "slave_id": 1,
-  "modbus_port": 502
-}
