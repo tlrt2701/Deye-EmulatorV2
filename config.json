@@ -6,7 +6,7 @@
   "startup": "application",
   "boot": "auto",
   "init": true,
-  "watchdog": "tcp://localhost:502"
+  "watchdog": "tcp://localhost:502",
   "host_network": true,
   "url": "https://github.com/tlrt2701/Deye-EmulatorV2",
   "panel_icon": "mdi:chip",
