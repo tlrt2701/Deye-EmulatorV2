@@ -1,30 +1,4 @@
 {
-  "name": "Deye Meter Emulator",
-  "url": "https://github.com/tlrt2701/Deye-EmulatorV2",
-  "maintainer": "Thorsten",
-  "addons": [
-    {
-      "name": "SDM630 Emulator",
-      "slug": "sdm630_emulator",
-      "description": "Emuliert einen SDM630 über Modbus TCP für Deye Wechselrichter via Waveshare",
-      "url": "https://github.com/tlrt2701/Deye-EmulatorV2",
-      "version": "1.0.0",
-      "stage": "stable",
-      "startup": "application",
-      "boot": "auto",
-      "options": {
-        "mqtt_broker": "core-mosquitto",
-        "mqtt_topic": "homeassistant/sensor/go_econtroller_910332_grid_power/state",
-        "slave_id": 1,
-        "modbus_port": 502
-      },
-      "schema": {
-        "mqtt_broker": "str",
-        "mqtt_topic": "str",
-        "slave_id": "int",
-        "modbus_port": "int"
-      },
-      "image": "local/sdm630_emulator"
-    }
-  ]
+  "name": "Deye Emulator Add-on Repository",
+  "url": "https://github.com/tlrt2701/Deye-EmulatorV2"
 }
