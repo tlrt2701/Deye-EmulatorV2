@@ -1,0 +1,23 @@
+mqtt_broker:
+  name: MQTT Broker
+  selector:
+    text:
+
+mqtt_topic:
+  name: MQTT Topic
+  selector:
+    text:
+
+slave_id:
+  name: Modbus Slave ID
+  selector:
+    number:
+      min: 1
+      max: 247
+
+modbus_port:
+  name: Modbus TCP Port
+  selector:
+    number:
+      min: 1
+      max: 65535
