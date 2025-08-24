@@ -6,8 +6,8 @@
     {
       "name": "SDM630 Emulator",
       "slug": "sdm630_emulator",
-      "description": "Emuliert einen SDM630 über Modbus TCP für Deye-Wechselrichter via Waveshare RS485",
-      "url": "https://github.com/tlrt2701/Deye-EmulatorV2",
+      "description": "Emuliert einen SDM630 über Modbus TCP für Deye Wechselrichter via Waveshare",
+      "url": "https://github.com/tlrt2701/Deye-EmulatorV2/sdm630_emulator",
       "version": "1.0.0",
       "stage": "stable",
       "startup": "application",
