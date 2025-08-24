@@ -8,7 +8,7 @@
   "init": true,
   "watchdog": true,
   "host_network": true,
-  "url": "https://github.com/thorsten-addons/deye-meter-emulator",
+  "url": "https://github.com/tlrt2701/Deye-EmulatorV2",
   "panel_icon": "mdi:chip",
   "ingress": false,
   "arch": ["amd64", "armv7", "aarch64"],
