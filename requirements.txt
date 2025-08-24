@@ -1,3 +1,2 @@
 paho-mqtt==1.6.1
 pymodbus==3.1.2
-redis==5.0.1
