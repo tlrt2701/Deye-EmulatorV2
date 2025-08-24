@@ -1,23 +1,29 @@
 mqtt_broker:
   name: MQTT Broker
+  description: Hostname oder IP des MQTT Brokers (z. B. core-mosquitto)
   selector:
     text:
 
 mqtt_topic:
   name: MQTT Topic
+  description: MQTT Topic, das den Leistungswert liefert
   selector:
     text:
 
 slave_id:
   name: Modbus Slave ID
+  description: ID des emulierten Modbus-Geräts (1–247)
   selector:
     number:
       min: 1
       max: 247
+      mode: box
 
 modbus_port:
   name: Modbus TCP Port
+  description: TCP-Port, auf dem der Modbus-Server lauscht
   selector:
     number:
       min: 1
       max: 65535
+      mode: box
