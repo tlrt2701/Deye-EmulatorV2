@@ -9,11 +9,9 @@ from pymodbus.server.sync import StartTcpServer
 from pymodbus.datastore import ModbusSlaveContext, ModbusServerContext, ModbusSequentialDataBlock
 from pymodbus.device import ModbusDeviceIdentification
 
-# 🔧 Logging konfigurieren
 logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
 logger = logging.getLogger("SDM630 Emulator")
 
-# 📁 Konfiguration laden
 def load_config(path="/data/options.json"):
     try:
         with open(path) as f:
@@ -28,11 +26,9 @@ mqtt_topic = config.get("mqtt_topic", "sensor/grid_power")
 slave_id = config.get("slave_id", 1)
 modbus_port = config.get("modbus_port", 502)
 
-# 🧮 Modbus-Daten vorbereiten
 store = ModbusSlaveContext(hr=ModbusSequentialDataBlock(0, [0]*100))
 context = ModbusServerContext(slaves={slave_id: store}, single=False)
 
-# 🆔 Geräteidentifikation (optional)
 identity = ModbusDeviceIdentification()
 identity.VendorName = "Thorsten"
 identity.ProductCode = "SDM630Emu"
@@ -41,18 +37,16 @@ identity.ProductName = "SDM630 Emulator"
 identity.ModelName = "SDM630-TCP"
 identity.MajorMinorRevision = "1.0.0"
 
-# 📡 MQTT-Callback
 def on_message(client, userdata, msg):
     try:
         payload = msg.payload.decode()
         value = float(payload)
         int_value = int(value)
-        store.setValues(3, 0, [int_value])  # Holding Register 0
+        store.setValues(3, 0, [int_value])
         logger.info(f"MQTT empfangen: {value:.2f} W → Register 0 gesetzt")
     except Exception as e:
         logger.warning(f"Ungültiger MQTT-Wert: {msg.payload} → Fehler: {e}")
 
-# 🧵 MQTT-Client starten
 client = mqtt.Client()
 client.on_message = on_message
 
@@ -65,7 +59,6 @@ except Exception as e:
 client.subscribe(mqtt_topic)
 client.loop_start()
 
-# 🛑 Signal-Handling für sauberes Beenden
 def handle_exit(signum, frame):
     logger.info("Beende Emulator...")
     client.loop_stop()
@@ -75,6 +68,5 @@ def handle_exit(signum, frame):
 signal.signal(signal.SIGINT, handle_exit)
 signal.signal(signal.SIGTERM, handle_exit)
 
-# 🚀 Modbus TCP-Server starten
 logger.info(f"Starte Modbus TCP-Server auf Port {modbus_port}...")
 StartTcpServer(context, identity=identity, address=("0.0.0.0", modbus_port))
