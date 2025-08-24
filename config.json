@@ -2,6 +2,7 @@
   "name": "SDM630 Emulator",
   "version": "1.0.0",
   "slug": "sdm630_emulator",
+  "build": true,
   "description": "Emuliert einen SDM630 über Modbus TCP für Deye-Wechselrichter via Waveshare RS485",
   "startup": "application",
   "boot": "auto",
