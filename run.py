@@ -3,10 +3,9 @@ import json
 import logging
 import signal
 import sys
-import time
 
 import paho.mqtt.client as mqtt
-from pymodbus.server import StartTcpServer
+from pymodbus.server.sync import StartTcpServer
 from pymodbus.datastore import ModbusSlaveContext, ModbusServerContext, ModbusSequentialDataBlock
 from pymodbus.device import ModbusDeviceIdentification
 
@@ -33,7 +32,7 @@ modbus_port = config.get("modbus_port", 502)
 store = ModbusSlaveContext(hr=ModbusSequentialDataBlock(0, [0]*100))
 context = ModbusServerContext(slaves={slave_id: store}, single=False)
 
-# 🆔 Geräteidentifikation (optional, aber empfohlen)
+# 🆔 Geräteidentifikation (optional)
 identity = ModbusDeviceIdentification()
 identity.VendorName = "Thorsten"
 identity.ProductCode = "SDM630Emu"
@@ -53,20 +52,9 @@ def on_message(client, userdata, msg):
     except Exception as e:
         logger.warning(f"Ungültiger MQTT-Wert: {msg.payload} → Fehler: {e}")
 
-def on_disconnect(client, userdata, rc):
-    logger.warning("MQTT-Verbindung getrennt. Versuche Neuverbindung...")
-    while True:
-        try:
-            client.reconnect()
-            logger.info("MQTT erfolgreich neu verbunden.")
-            break
-        except Exception:
-            time.sleep(5)
-
 # 🧵 MQTT-Client starten
 client = mqtt.Client()
 client.on_message = on_message
-client.on_disconnect = on_disconnect
 
 try:
     client.connect(mqtt_broker, 1883, 60)
